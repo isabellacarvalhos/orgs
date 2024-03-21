@@ -5,5 +5,5 @@ import java.math.BigDecimal
 class Products(
     val name: String,
     val description: String,
-    val price: BigDecimal
+    val price: String
 )

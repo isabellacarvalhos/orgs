@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
 import br.com.alura.orgs.model.Products
@@ -13,7 +14,16 @@ class ProductsListAdapter(
     private val products: List<Products>
 ) : RecyclerView.Adapter<ProductsListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        fun binding(product: Products) {
+            val name = itemView.findViewById<TextView>(R.id.name)
+            name.text = product.name
+            val description = itemView.findViewById<TextView>(R.id.description)
+            description.text = product.description
+            val price = itemView.findViewById<TextView>(R.id.price)
+            price.text = product.price
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -26,7 +36,8 @@ class ProductsListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val product =  products[position]
+        holder.binding(product)
     }
 
 }

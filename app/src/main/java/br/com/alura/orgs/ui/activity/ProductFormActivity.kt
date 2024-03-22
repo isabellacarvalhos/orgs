@@ -25,13 +25,13 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     }
 
     private fun createdProduct(): Products {
-        val name = findViewById<EditText>(R.id.name)
+        val name = findViewById<EditText>(R.id.product_form_name)
         val nameProduct = name.text.toString()
 
-        val description = findViewById<EditText>(R.id.description)
+        val description = findViewById<EditText>(R.id.product_form_description)
         val descriptionProduct = description.text.toString()
 
-        val price = findViewById<EditText>(R.id.price)
+        val price = findViewById<EditText>(R.id.product_form_price)
         val priceProduct = price.text.toString()
 
         return Products(

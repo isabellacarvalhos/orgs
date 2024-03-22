@@ -28,7 +28,7 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
     }
 
     private fun configureActionButton() {
-        val actionButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
+        val actionButton = findViewById<FloatingActionButton>(R.id.activity_products_list_floatingActionButton)
         actionButton.setOnClickListener {
             val intent = Intent(this, ProductFormActivity::class.java)
             startActivity(intent)
@@ -36,7 +36,7 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
     }
 
     private fun configureRecyclerView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.activity_products_list_recyclerView)
 
         recyclerView.adapter = adapter
 

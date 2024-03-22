@@ -12,13 +12,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) {
 
+    private val dao = ProductsDao()
+    private val adapter = ProductsListAdapter(this, products = dao.searchAll())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configureRecyclerView()
+
     }
 
     override fun onResume() {
         super.onResume()
-        configureRecyclerView()
+        adapter.update(dao.searchAll())
         configureActionButton()
     }
 
@@ -33,8 +38,7 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
     private fun configureRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-        val dao = ProductsDao()
-        recyclerView.adapter = ProductsListAdapter(this, products = dao.searchAll())
+        recyclerView.adapter = adapter
 
         recyclerView.layoutManager = LinearLayoutManager(this)
     }

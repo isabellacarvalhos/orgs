@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
+import br.com.alura.orgs.dao.ProductsDao
 import br.com.alura.orgs.model.Products
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
@@ -30,6 +31,10 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
                 price = priceProduct
             )
             Log.d("Created Product", "createdProduct: $createdProduct")
+            val dao = ProductsDao()
+            dao.add(createdProduct)
+            Log.d("Created Product", "createdProduct: ${dao.searchAll()}")
+            finish()
         }
     }
 

@@ -13,6 +13,10 @@ class ProductsDao {
     }
 
     companion object {
-        private val newProducts = mutableListOf<Products>()
+        private val newProducts = mutableListOf<Products>(
+            Products(name = "Salada de frutas",
+                description = "Laranja, maças e uva",
+                price = "12.00")
+        )
     }
 }

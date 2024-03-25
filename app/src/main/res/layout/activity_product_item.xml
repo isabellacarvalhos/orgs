@@ -59,7 +59,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/fruits"
-                android:importantForAccessibility="no" />
+                android:importantForAccessibility="no"
+                app:layout_constraintWidth_percent="0.3"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
 

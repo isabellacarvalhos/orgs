@@ -3,12 +3,11 @@ package br.com.alura.orgs.ui.recyclerview.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ActivityProductItemBinding
-import br.com.alura.orgs.databinding.ActivityProductsListBinding
 import br.com.alura.orgs.model.Products
+import java.text.NumberFormat
+import java.util.Locale
 
 class ProductsListAdapter(
     private val context: Context,
@@ -25,7 +24,14 @@ class ProductsListAdapter(
         fun binding(product: Products) {
             name.text = product.name
             description.text = product.description
-            price.text = product.price
+            val priceInCurrency: String = formatToBrazilCurrency(product.price)
+            price.text = priceInCurrency
+        }
+
+        private fun formatToBrazilCurrency(price: Double): String {
+            val currencyInstance: NumberFormat = NumberFormat
+                .getCurrencyInstance(Locale("pt", "br"))
+            return currencyInstance.format(price)
         }
     }
 

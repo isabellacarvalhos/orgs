@@ -1,13 +1,12 @@
 package br.com.alura.orgs.ui.activity
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProductsDao
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.model.Products
+import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -34,7 +33,8 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private fun createProduct(): Products {
         val name = binding.productFormName.text.toString()
         val description = binding.productFormDescription.text.toString()
-        val price = binding.productFormPrice.text.toString()
+        val priceString = binding.productFormPrice.text.toString()
+        val price = priceString.toDoubleOrNull() ?: 0.0
 
         return Products(
             name = name,

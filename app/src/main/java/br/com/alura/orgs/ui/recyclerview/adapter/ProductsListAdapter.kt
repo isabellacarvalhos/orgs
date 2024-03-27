@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.databinding.ActivityProductItemBinding
 import br.com.alura.orgs.model.Products
+import coil.load
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -21,11 +22,16 @@ class ProductsListAdapter(
         private val name = binding.name
         private val description = binding.description
         private val price = binding.price
+        private val image = binding.imageView
+
         fun binding(product: Products) {
             name.text = product.name
             description.text = product.description
+
             val priceInCurrency: String = formatToBrazilCurrency(product.price)
             price.text = priceInCurrency
+
+            image.load(product.image)
         }
 
         private fun formatToBrazilCurrency(price: Double): String {

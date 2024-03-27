@@ -6,24 +6,34 @@ import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProductsDao
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
+import br.com.alura.orgs.databinding.ImageFormBinding
 import br.com.alura.orgs.model.Products
+import coil.load
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     private lateinit var binding: ActivityProductFormBinding
+    private var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         configureSaveButton()
-        binding.productFormImage.setOnClickListener{
-            AlertDialog.Builder(this)
-                .setView(R.layout.image_form)
-                .setPositiveButton("Confirmar") {_,_ ->
 
+        binding.productFormImage.setOnClickListener{
+            val bindingImageForm = ImageFormBinding.inflate(layoutInflater)
+            bindingImageForm.buttonForm.setOnClickListener {
+                val url = bindingImageForm.imageFormUrl.text.toString()
+                bindingImageForm.imageFormImageview.load(url)
+            }
+
+            AlertDialog.Builder(this)
+                .setView(bindingImageForm.root)
+                .setPositiveButton("Confirmar") {_,_ ->
+                    url = bindingImageForm.imageFormUrl.text.toString()
+                    binding.productFormImage.load(url)
                 }
                 .setNegativeButton("Cancelar") {_,_ ->
 
@@ -51,7 +61,8 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         return Products(
             name = name,
             description = description,
-            price = price
+            price = price,
+            image = url
         )
     }
 }

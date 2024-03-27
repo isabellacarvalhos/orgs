@@ -11,14 +11,45 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/image_form_imageview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/imagem_padrao"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no" />
 
+        <Button
+            android:id="@+id/button_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_form_imageview"
+            app:layout_constraintBottom_toBottomOf="@id/image_form_imageview"
+            app:icon="@drawable/ic_action_refresh"
+            android:text="@string/load_button"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/image_form_textInputLayout_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_form"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/image_form_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/image_url"
+                android:inputType="textUri"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

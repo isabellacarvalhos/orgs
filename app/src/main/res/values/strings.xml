@@ -5,4 +5,6 @@
     <string name="price">Valor</string>
     <string name="save">Salvar</string>
     <string name="fab_text">Novo produto</string>
+    <string name="load_button">Carregar</string>
+    <string name="image_url">URL da imagem</string>
 </resources>

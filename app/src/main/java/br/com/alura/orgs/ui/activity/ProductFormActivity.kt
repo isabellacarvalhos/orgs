@@ -1,6 +1,7 @@
 package br.com.alura.orgs.ui.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProductsDao
@@ -18,6 +19,17 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         setContentView(binding.root)
 
         configureSaveButton()
+        binding.productFormImage.setOnClickListener{
+            AlertDialog.Builder(this)
+                .setView(R.layout.image_form)
+                .setPositiveButton("Confirmar") {_,_ ->
+
+                }
+                .setNegativeButton("Cancelar") {_,_ ->
+
+                }
+                .show()
+        }
     }
 
     private fun configureSaveButton() {

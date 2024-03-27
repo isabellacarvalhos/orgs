@@ -2,9 +2,12 @@ package br.com.alura.orgs.ui.recyclerview.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ActivityProductItemBinding
+import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import coil.load
 import java.text.NumberFormat
@@ -31,7 +34,15 @@ class ProductsListAdapter(
             val priceInCurrency: String = formatToBrazilCurrency(product.price)
             price.text = priceInCurrency
 
-            image.load(product.image)
+            val visibility = if (product.image != null) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
+
+            image.visibility = visibility
+
+            image.uploadImage(product.image)
         }
 
         private fun formatToBrazilCurrency(price: Double): String {

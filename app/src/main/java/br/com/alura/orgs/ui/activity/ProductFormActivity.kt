@@ -7,6 +7,7 @@ import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProductsDao
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.databinding.ImageFormBinding
+import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import coil.load
 import java.math.BigDecimal
@@ -26,14 +27,14 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             val bindingImageForm = ImageFormBinding.inflate(layoutInflater)
             bindingImageForm.buttonForm.setOnClickListener {
                 val url = bindingImageForm.imageFormUrl.text.toString()
-                bindingImageForm.imageFormImageview.load(url)
+                bindingImageForm.imageFormImageview.uploadImage(url)
             }
 
             AlertDialog.Builder(this)
                 .setView(bindingImageForm.root)
-                .setPositiveButton("Confirmar") {_,_ ->
+                .setPositiveButton("Confirmar") { _, _ ->
                     url = bindingImageForm.imageFormUrl.text.toString()
-                    binding.productFormImage.load(url)
+                    binding.productFormImage.uploadImage(url)
                 }
                 .setNegativeButton("Cancelar") {_,_ ->
 

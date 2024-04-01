@@ -9,6 +9,7 @@ import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.databinding.ImageFormBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
+import br.com.alura.orgs.ui.dialog.ImageFormDialog
 import coil.load
 import java.math.BigDecimal
 
@@ -24,22 +25,11 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         configureSaveButton()
 
         binding.productFormImage.setOnClickListener{
-            val bindingImageForm = ImageFormBinding.inflate(layoutInflater)
-            bindingImageForm.buttonForm.setOnClickListener {
-                val url = bindingImageForm.imageFormUrl.text.toString()
-                bindingImageForm.imageFormImageview.uploadImage(url)
+            ImageFormDialog(this).show(url) {
+                image ->
+                url = image
+                binding.productFormImage.uploadImage(url)
             }
-
-            AlertDialog.Builder(this)
-                .setView(bindingImageForm.root)
-                .setPositiveButton("Confirmar") { _, _ ->
-                    url = bindingImageForm.imageFormUrl.text.toString()
-                    binding.productFormImage.uploadImage(url)
-                }
-                .setNegativeButton("Cancelar") {_,_ ->
-
-                }
-                .show()
         }
     }
 

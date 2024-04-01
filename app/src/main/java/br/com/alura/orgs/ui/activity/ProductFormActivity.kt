@@ -22,6 +22,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        title = "Cadastre Produto"
         configureSaveButton()
 
         binding.productFormImage.setOnClickListener{

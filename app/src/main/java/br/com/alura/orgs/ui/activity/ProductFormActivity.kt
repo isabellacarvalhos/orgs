@@ -1,17 +1,13 @@
 package br.com.alura.orgs.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
 import br.com.alura.orgs.dao.ProductsDao
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
-import br.com.alura.orgs.databinding.ImageFormBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import br.com.alura.orgs.ui.dialog.ImageFormDialog
-import coil.load
-import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -25,7 +21,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         title = "Cadastre Produto"
         configureSaveButton()
 
-        binding.productFormImage.setOnClickListener{
+        binding.productFormImage.setOnClickListener {
             ImageFormDialog(this).show(url) {
                 image ->
                 url = image

@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context= ".ui.activity.ProductDetailsActivity">
 
         <ImageView
             android:id="@+id/details_image"
@@ -28,20 +29,49 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/details_image"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.0"
             android:layout_margin="16dp"
             android:fontFamily="@font/amaranth_bold"
             android:textSize="28sp"
             tools:text="testetetwteteetetjaduwhfuhfu3heufhuheufheufhuefeuhfeuhfeufheuhfuekfeknfenfejn" />
 
         <TextView
+            android:id="@+id/description_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="top"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_details"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="16dp"
+            app:layout_constraintVertical_bias="0.0"
             android:fontFamily="@font/amaranth"
             android:textSize="20sp"
             tools:text="testetetwteteetetjaduwhfuhfu3heufhuheufheufhuefeuhfeuhfeufheuhfuekfeknfenfejn" />
+
+        <TextView
+            android:id="@+id/activity_detalhes_produto_valor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_background"
+            android:elevation="10dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/pink"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/details_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_image"
+            tools:text="R$ 1299,99" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

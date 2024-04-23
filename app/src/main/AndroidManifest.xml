@@ -16,7 +16,8 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".ui.activity.ProductDetailsActivity" />
+            android:name=".ui.activity.ProductDetailsActivity"
+            android:theme="@style/Theme.Orgs.NoActionBar"/>
         <activity android:name=".ui.activity.ProductFormActivity" />
         <activity android:name=".ui.activity.ProductsListActivity"
             android:exported="true">

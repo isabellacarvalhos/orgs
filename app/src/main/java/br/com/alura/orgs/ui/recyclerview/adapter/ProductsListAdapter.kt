@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ActivityProductItemBinding
+import br.com.alura.orgs.extensions.formatToBrazilCurrency
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import coil.load
@@ -56,12 +57,6 @@ class ProductsListAdapter(
             image.visibility = visibility
 
             image.uploadImage(product.image)
-        }
-
-        private fun formatToBrazilCurrency(price: Double): String {
-            val currencyInstance: NumberFormat = NumberFormat
-                .getCurrencyInstance(Locale("pt", "br"))
-            return currencyInstance.format(price)
         }
     }
 

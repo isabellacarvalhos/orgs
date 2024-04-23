@@ -6,6 +6,8 @@ import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ActivityProductDetailsBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
+import br.com.alura.orgs.extensions.formatToBrazilCurrency
+
 
 class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_details) {
 
@@ -29,7 +31,8 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
             detailsImage.uploadImage(uploadedProduct.image)
             titleDetails.text = uploadedProduct.name
             descriptionDetails.text = uploadedProduct.description
-            priceDetails.text = uploadedProduct.price.toString()
+            priceDetails.text = formatToBrazilCurrency(uploadedProduct.price)
+
             }
     }
 

@@ -15,12 +15,24 @@ import java.util.Locale
 
 class ProductsListAdapter(
     private val context: Context,
-    products: List<Products>
+    products: List<Products>,
+    var whenItemClicked: (product: Products) -> Unit = {}
 ) : RecyclerView.Adapter<ProductsListAdapter.ViewHolder>() {
 
     private val products = products.toMutableList()
 
-    class ViewHolder(binding: ActivityProductItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ActivityProductItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var product: Products
+
+        init {
+            itemView.setOnClickListener {
+                if (::product.isInitialized) {
+                    whenItemClicked(product)
+                }
+            }
+        }
 
         private val name = binding.name
         private val description = binding.description
@@ -28,6 +40,7 @@ class ProductsListAdapter(
         private val image = binding.imageView
 
         fun binding(product: Products) {
+            this.product = product
             name.text = product.name
             description.text = product.description
 

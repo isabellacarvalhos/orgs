@@ -41,6 +41,19 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
     private fun configureRecyclerView() {
         val recyclerView = binding.activityProductsListRecyclerView
         recyclerView.adapter = adapter
+        adapter.whenItemClicked = {
+            val intent = Intent(
+                this,
+                ProductDetailsActivity::class.java
+            ).apply {
+                putExtra(PRODUCT_KEY, it)
+            }
+            startActivity(intent)
+        }
         recyclerView.layoutManager = LinearLayoutManager(this)
+    }
+
+    companion object {
+        const val PRODUCT_KEY = "product"
     }
 }

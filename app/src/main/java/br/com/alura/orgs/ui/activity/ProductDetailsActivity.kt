@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
 import br.com.alura.orgs.databinding.ActivityProductDetailsBinding
+import br.com.alura.orgs.extensions.uploadImage
+import br.com.alura.orgs.model.Products
 
 class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_details) {
 
@@ -13,5 +15,25 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        tryToUploadProduct()
+    }
+
+    private fun tryToUploadProduct() {
+        intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let { uploadedProduct ->
+            fillInFields(uploadedProduct)
+        } ?: finish()
+    }
+
+    private fun fillInFields(uploadedProduct: Products) {
+        with(binding) {
+            detailsImage.uploadImage(uploadedProduct.image)
+            titleDetails.text = uploadedProduct.name
+            descriptionDetails.text = uploadedProduct.description
+            priceDetails.text = uploadedProduct.price.toString()
+            }
+    }
+
+    companion object {
+        const val PRODUCT_KEY = "product"
     }
 }

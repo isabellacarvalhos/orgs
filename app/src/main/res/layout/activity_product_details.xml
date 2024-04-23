@@ -53,7 +53,7 @@
             tools:text="testetetwteteetetjaduwhfuhfu3heufhuheufheufhuefeuhfeuhfeufheuhfuekfeknfenfejn" />
 
         <TextView
-            android:id="@+id/activity_detalhes_produto_valor"
+            android:id="@+id/price_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"

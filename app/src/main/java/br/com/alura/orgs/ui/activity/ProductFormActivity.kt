@@ -12,6 +12,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import java.time.Instant
 import java.time.ZoneId
 import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -39,20 +40,23 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     }
 
     private fun configureDate() {
-        val dateSelector = MaterialDatePicker
-            .Builder.
-            datePicker().build()
+            val dateSelector = MaterialDatePicker.Builder.datePicker().build()
 
-        dateSelector.show(supportFragmentManager, "MATERIAL_DATE_PICKER")
+            dateSelector.show(supportFragmentManager, "MATERIAL_DATE_PICKER")
 
-        dateSelector.addOnPositiveButtonClickListener { dateInMiliseconds ->
-            val date = Instant.ofEpochMilli(dateInMiliseconds)
-                .atZone(ZoneId.of("America/Sao_Paulo"))
-                .withZoneSameInstant(ZoneId.ofOffset("UTC", ZoneOffset.UTC))
-                .toLocalDate()
-            binding.productFormDate.setText(date.toString())
-        }
+            dateSelector.addOnPositiveButtonClickListener { dateInMilliseconds ->
+                val localDate = Instant.ofEpochMilli(dateInMilliseconds)
+                    .atZone(ZoneId.of("America/Sao_Paulo"))
+                    .withZoneSameInstant(ZoneId.ofOffset("UTC", ZoneOffset.UTC))
+                    .toLocalDate()
+
+                val dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                val formattedDate = localDate.format(dateFormatter)
+
+                binding.productFormDate.setText(formattedDate)
+            }
     }
+
     private fun configureSaveButton() {
         val button = binding.button
         val dao = ProductsDao()

@@ -8,6 +8,10 @@ import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import br.com.alura.orgs.ui.dialog.ImageFormDialog
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -28,8 +32,27 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
                 binding.productFormImage.uploadImage(url)
             }
         }
+
+        binding.productFormDate.setOnClickListener {
+            configureDate()
+        }
     }
 
+    private fun configureDate() {
+        val dateSelector = MaterialDatePicker
+            .Builder.
+            datePicker().build()
+
+        dateSelector.show(supportFragmentManager, "MATERIAL_DATE_PICKER")
+
+        dateSelector.addOnPositiveButtonClickListener { dateInMiliseconds ->
+            val date = Instant.ofEpochMilli(dateInMiliseconds)
+                .atZone(ZoneId.of("America/Sao_Paulo"))
+                .withZoneSameInstant(ZoneId.ofOffset("UTC", ZoneOffset.UTC))
+                .toLocalDate()
+            binding.productFormDate.setText(date.toString())
+        }
+    }
     private fun configureSaveButton() {
         val button = binding.button
         val dao = ProductsDao()

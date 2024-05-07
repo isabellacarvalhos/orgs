@@ -58,52 +58,43 @@
                 android:hint="@string/description" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:id="@+id/product_form_linear_layout"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/product_form_textInputLayout_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/product_form_textInputLayout_description"
+            app:layout_constraintEnd_toStartOf="@id/product_form_textInputLayout_date"
             app:layout_constraintTop_toBottomOf="@id/product_form_textInputLayout_description"
-            app:layout_constraintBottom_toTopOf="@id/button"
-            android:layout_margin="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/product_form_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="@string/price" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/product_form_textInputLayout_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+            app:layout_constraintStart_toEndOf="@id/product_form_textInputLayout_price"
+            app:layout_constraintEnd_toEndOf="@id/product_form_textInputLayout_description"
+            app:layout_constraintTop_toBottomOf="@id/product_form_textInputLayout_description"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/product_form_textInputLayout_price"
-                android:layout_width="0dp"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/product_form_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/product_form_price"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="@string/price" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/product_form_textInputLayout_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/product_form_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:hint="@string/date"
-                    android:focusable="false"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
+                android:inputType="numberDecimal"
+                android:hint="@string/date"
+                android:focusable="false"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button"
@@ -111,11 +102,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/save"
-            app:layout_constraintVertical_bias="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/product_form_linear_layout"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_form_textInputLayout_date"
+            app:layout_constraintVertical_bias="1" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

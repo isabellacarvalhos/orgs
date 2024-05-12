@@ -12,6 +12,8 @@ constraintlayout = "2.1.4"
 recyclerview = "1.3.2"
 coil = "2.6.0"
 materialDatePickerVersion = "1.5.0"
+roomVersion = "2.6.1"
+kapt = "1.5.31"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,8 +27,12 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
 materialDatePicker = { group = "com.google.android.material", name = "material", version.ref = "materialDatePickerVersion"}
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kapt" }
+
 

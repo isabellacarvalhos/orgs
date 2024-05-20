@@ -5,15 +5,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.alura.orgs.R
-import br.com.alura.orgs.dao.ProductsDao
+import br.com.alura.orgs.database.AppDataBase
 import br.com.alura.orgs.databinding.ActivityProductsListBinding
 import br.com.alura.orgs.ui.recyclerview.adapter.ProductsListAdapter
 
 class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) {
 
     private lateinit var binding: ActivityProductsListBinding
-    private val dao = ProductsDao()
-    private val adapter = ProductsListAdapter(this, products = dao.searchAll())
+    private val adapter = ProductsListAdapter(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +25,9 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
 
     override fun onResume() {
         super.onResume()
-        adapter.update(dao.searchAll())
+        val db = AppDataBase.getInstance(this)
+        val productDao = db.ProductsDao()
+        adapter.update(productDao.searchAll())
         configureActionButton()
     }
 

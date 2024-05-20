@@ -16,7 +16,7 @@ import java.util.Locale
 
 class ProductsListAdapter(
     private val context: Context,
-    products: List<Products>,
+    products: List<Products> = emptyList(),
     var whenItemClicked: (product: Products) -> Unit = {}
 ) : RecyclerView.Adapter<ProductsListAdapter.ViewHolder>() {
 

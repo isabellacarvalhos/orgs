@@ -3,7 +3,7 @@ package br.com.alura.orgs.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
-import br.com.alura.orgs.dao.ProductsDao
+import br.com.alura.orgs.database.AppDataBase
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
@@ -59,10 +59,11 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     private fun configureSaveButton() {
         val button = binding.button
-        val dao = ProductsDao()
+        val db = AppDataBase.getInstance(this)
+        val productDao = db.ProductsDao()
         button.setOnClickListener {
             val createdProduct = createProduct()
-            dao.add(createdProduct)
+            productDao.save(createdProduct)
             finish()
         }
     }

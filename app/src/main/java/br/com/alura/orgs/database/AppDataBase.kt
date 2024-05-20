@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import br.com.alura.orgs.database.dao.ProductsDao
 import br.com.alura.orgs.model.Products
 
-@Database(entities = [Products::class], version = 1)
+@Database(entities = [Products::class], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
     abstract fun ProductsDao() : ProductsDao
 

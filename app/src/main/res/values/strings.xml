@@ -8,4 +8,6 @@
     <string name="fab_text">Novo produto</string>
     <string name="load_button">Carregar</string>
     <string name="image_url">URL da imagem</string>
+    <string name="menu_edit">Editar</string>
+    <string name="menu_remove">Remover</string>
 </resources>

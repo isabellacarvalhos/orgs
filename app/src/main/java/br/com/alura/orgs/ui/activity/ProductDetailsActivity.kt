@@ -1,5 +1,6 @@
 package br.com.alura.orgs.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -39,7 +40,10 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
                     finish()
                 }
                 R.id.menu_edit -> {
-
+                    Intent(this, ProductFormActivity::class.java).apply {
+                        putExtra(PRODUCT_KEY, product)
+                        startActivity(this)
+                    }
                 }
             }
         }

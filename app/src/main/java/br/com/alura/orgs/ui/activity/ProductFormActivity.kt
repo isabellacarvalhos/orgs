@@ -7,6 +7,7 @@ import br.com.alura.orgs.database.AppDataBase
 import br.com.alura.orgs.databinding.ActivityProductFormBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
+import br.com.alura.orgs.ui.activity.ProductDetailsActivity.Companion.PRODUCT_KEY
 import br.com.alura.orgs.ui.dialog.ImageFormDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.time.Instant
@@ -18,6 +19,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     private lateinit var binding: ActivityProductFormBinding
     private var url: String? = null
+    private var idProduct = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,14 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
         binding.productFormDate.setOnClickListener {
             configureDate()
+        }
+        intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let {uploadProduct ->
+            title = "Alterar Produto"
+            idProduct = uploadProduct.id
+            binding.productFormImage.uploadImage(uploadProduct.image)
+            binding.productFormName.setText(uploadProduct.name)
+            binding.productFormDescription.setText(uploadProduct.description)
+            binding.productFormPrice.setText(uploadProduct.price.toString())
         }
     }
 

@@ -1,6 +1,7 @@
 package br.com.alura.orgs.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import br.com.alura.orgs.model.Products
@@ -13,4 +14,7 @@ interface ProductsDao {
 
     @Insert
     fun save(vararg products: Products)
+
+    @Delete
+    fun remove(products: Products)
 }

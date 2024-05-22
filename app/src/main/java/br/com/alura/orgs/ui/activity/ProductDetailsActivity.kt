@@ -5,6 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alura.orgs.R
+import br.com.alura.orgs.database.AppDataBase
+import br.com.alura.orgs.database.dao.ProductsDao
 import br.com.alura.orgs.databinding.ActivityProductDetailsBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
@@ -13,6 +15,7 @@ import br.com.alura.orgs.extensions.formatToBrazilCurrency
 
 class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_details) {
 
+    private lateinit var product: Products
     private lateinit var binding: ActivityProductDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,12 +31,16 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_remover -> {
+        if (::product.isInitialized) {
+            val instance = AppDataBase.getInstance(this)
+            when (item.itemId) {
+                R.id.menu_remover -> {
+                    instance.ProductsDao().remove(product)
+                    finish()
+                }
+                R.id.menu_edit -> {
 
-            }
-            R.id.menu_edit -> {
-
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -41,6 +48,7 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
 
     private fun tryToUploadProduct() {
         intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let { uploadedProduct ->
+            product = uploadedProduct
             fillInFields(uploadedProduct)
         } ?: finish()
     }

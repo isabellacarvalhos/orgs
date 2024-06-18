@@ -73,6 +73,11 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         val productDao = db.ProductsDao()
         button.setOnClickListener {
             val createdProduct = createProduct()
+            if (idProduct > 0) {
+                productDao.change(createdProduct)
+            } else {
+                productDao.save(createdProduct)
+            }
             productDao.save(createdProduct)
             finish()
         }
@@ -85,6 +90,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         val price = priceString.toDoubleOrNull() ?: 0.0
 
         return Products(
+            id = idProduct,
             name = name,
             description = description,
             price = price,

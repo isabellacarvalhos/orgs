@@ -12,12 +12,17 @@ import br.com.alura.orgs.databinding.ActivityProductDetailsBinding
 import br.com.alura.orgs.extensions.uploadImage
 import br.com.alura.orgs.model.Products
 import br.com.alura.orgs.extensions.formatToBrazilCurrency
+import br.com.alura.orgs.ui.activity.ProductsListActivity.Companion.PRODUCT_KEY
 
 
 class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_details) {
 
-    private lateinit var product: Products
+    private var productId: Long? = null
+    private var product: Products? = null
     private lateinit var binding: ActivityProductDetailsBinding
+    val productDao by lazy {
+        AppDataBase.getInstance(this).productsDao()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,24 +31,31 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
         tryToUploadProduct()
     }
 
+    override fun onResume() {
+        super.onResume()
+        productId?.let { id ->
+            product = productDao.searchForId(id)
+        }
+        product?.let {
+            fillInFields(it)
+        } ?: finish()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_details_product, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (::product.isInitialized) {
-            val instance = AppDataBase.getInstance(this)
-            when (item.itemId) {
-                R.id.menu_remover -> {
-                    instance.ProductsDao().remove(product)
-                    finish()
-                }
-                R.id.menu_edit -> {
-                    Intent(this, ProductFormActivity::class.java).apply {
-                        putExtra(PRODUCT_KEY, product)
-                        startActivity(this)
-                    }
+        when (item.itemId) {
+            R.id.menu_remover -> {
+                product?.let { productDao.remove(it) }
+                finish()
+            }
+            R.id.menu_edit -> {
+                Intent(this, ProductFormActivity::class.java).apply {
+                    putExtra(PRODUCT_KEY, product)
+                    startActivity(this)
                 }
             }
         }
@@ -52,8 +64,7 @@ class ProductDetailsActivity: AppCompatActivity(R.layout.activity_product_detail
 
     private fun tryToUploadProduct() {
         intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let { uploadedProduct ->
-            product = uploadedProduct
-            fillInFields(uploadedProduct)
+            productId = uploadedProduct.id
         } ?: finish()
     }
 

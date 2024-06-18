@@ -9,7 +9,7 @@ import br.com.alura.orgs.model.Products
 
 @Database(entities = [Products::class], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun ProductsDao() : ProductsDao
+    abstract fun productsDao() : ProductsDao
 
     companion object {
         fun getInstance(context: Context) : AppDataBase {

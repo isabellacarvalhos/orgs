@@ -39,9 +39,10 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         binding.productFormDate.setOnClickListener {
             configureDate()
         }
-        intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let {uploadProduct ->
+        intent.getParcelableExtra<Products>(PRODUCT_KEY)?.let { uploadProduct ->
             title = "Alterar Produto"
             idProduct = uploadProduct.id
+            url = uploadProduct.image
             binding.productFormImage.uploadImage(uploadProduct.image)
             binding.productFormName.setText(uploadProduct.name)
             binding.productFormDescription.setText(uploadProduct.description)
@@ -70,7 +71,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private fun configureSaveButton() {
         val button = binding.button
         val db = AppDataBase.getInstance(this)
-        val productDao = db.ProductsDao()
+        val productDao = db.productsDao()
         button.setOnClickListener {
             val createdProduct = createProduct()
             if (idProduct > 0) {

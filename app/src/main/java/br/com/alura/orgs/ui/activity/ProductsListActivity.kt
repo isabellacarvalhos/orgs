@@ -26,7 +26,7 @@ class ProductsListActivity : AppCompatActivity(R.layout.activity_products_list) 
     override fun onResume() {
         super.onResume()
         val db = AppDataBase.getInstance(this)
-        val productDao = db.ProductsDao()
+        val productDao = db.productsDao()
         adapter.update(productDao.searchAll())
         configureActionButton()
     }

@@ -21,4 +21,7 @@ interface ProductsDao {
 
     @Update
     fun change(products: Products)
+
+    @Query("SELECT * FROM Products WHERE id = :id")
+    fun searchForId(id: Long) : Products?
 }
